@@ -2,4 +2,11 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/UnoFlyoutStyleIssue/UnoFlyoutStyleIssue.Droid/bin/Debug
+/UnoFlyoutStyleIssue/UnoFlyoutStyleIssue.Droid/bin
+/UnoFlyoutStyleIssue/UnoFlyoutStyleIssue.Droid/obj
+/UnoFlyoutStyleIssue/UnoFlyoutStyleIssue.UWP/bin
+/UnoFlyoutStyleIssue/UnoFlyoutStyleIssue.iOS/obj
+/UnoFlyoutStyleIssue/UnoFlyoutStyleIssue.macOS/obj
+/UnoFlyoutStyleIssue/UnoFlyoutStyleIssue.UWP/obj
+/UnoFlyoutStyleIssue/UnoFlyoutStyleIssue.Wasm/obj
+/.vs
