@@ -11,7 +11,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnoFlyoutStyleIssue.iOS", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnoFlyoutStyleIssue.UWP", "UnoFlyoutStyleIssue\UnoFlyoutStyleIssue.UWP\UnoFlyoutStyleIssue.UWP.csproj", "{A574BAA5-32CD-45D4-958C-0A80C4C70F9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnoFlyoutStyleIssue.Wasm", "UnoFlyoutStyleIssue\UnoFlyoutStyleIssue.Wasm\UnoFlyoutStyleIssue.Wasm.csproj", "{4C095E14-CE7B-4004-9928-6FF2B3F39F09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnoFlyoutStyleIssue.Wasm", "UnoFlyoutStyleIssue\UnoFlyoutStyleIssue.Wasm\UnoFlyoutStyleIssue.Wasm.csproj", "{4C095E14-CE7B-4004-9928-6FF2B3F39F09}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0DC161EE-8F09-45F3-B237-BC88D97F58BB}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
