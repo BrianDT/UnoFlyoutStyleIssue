@@ -3,6 +3,8 @@ Reproduces an issue with flyout styles in Uno
 
 Uno.UI 3.0.0-dev.76
 
+Reported as issue #3216
+
 System.Exception
   Message=Failed to load UnoFlyoutStyleIssue.MainPage: System.InvalidOperationException: The resource menuFlyoutItemStyle cannot be found
   at UnoFlyoutStyleIssue.MainPage+<>c__DisplayClass2_0.<InitializeComponent>b__1 (UnoFlyoutStyleIssue.MainPage c3) [0x00001] in D:\Development\GitHub\UnoFlyoutStyleIssue\UnoFlyoutStyleIssue\UnoFlyoutStyleIssue.Droid\obj\Debug\90\g\XamlCodeGenerator\MainPage_523c63a278830d164cac6f1cfbdba873.g.cs:87 

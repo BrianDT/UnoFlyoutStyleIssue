@@ -13,8 +13,14 @@
         </Style>
     </Page.Resources>
 
-    <Page.BottomAppBar>
-        <CommandBar>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+		<TextBlock Text="Hello, world!" Margin="20" FontSize="30" />
+
+        <CommandBar Grid.Row="1">
             <CommandBar.PrimaryCommands>
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
@@ -26,16 +32,12 @@
                     <AppBarButton.Flyout>
                         <MenuFlyout>
                             <MenuFlyoutItem Text="Tutorial"
-                                            Style="{StaticResource menuFlyoutItemStyle}"/>
+                                            Style="{StaticResource menuFlyoutItemStyle}"/> <!--If the style id changed to menuFlyoutItemGlobalStyle the crash will not occur-->
                         </MenuFlyout>
                     </AppBarButton.Flyout>
                 </AppBarButton>
             </CommandBar.SecondaryCommands>
         </CommandBar>
-    </Page.BottomAppBar>
 
-
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<TextBlock Text="Hello, world!" Margin="20" FontSize="30" />
     </Grid>
 </Page>
