@@ -1,29 +1,32 @@
-﻿using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.ApplicationModel;
-using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
+﻿// <copyright file="App.xaml.cs" company="Visual Software Systems Ltd.">Copyright (c) 2020 All rights reserved</copyright>
 
 namespace UnoFlyoutStyleIssue
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Runtime.InteropServices.WindowsRuntime;
+    using Microsoft.Extensions.Logging;
+    using Windows.ApplicationModel;
+    using Windows.ApplicationModel.Activation;
+    using Windows.Foundation;
+    using Windows.Foundation.Collections;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Controls.Primitives;
+    using Windows.UI.Xaml.Data;
+    using Windows.UI.Xaml.Input;
+    using Windows.UI.Xaml.Media;
+    using Windows.UI.Xaml.Navigation;
+
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class App : Application
+    public sealed partial class App : Application
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="App"/> class
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
@@ -32,7 +35,7 @@ namespace UnoFlyoutStyleIssue
             ConfigureFilters(global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory);
 
             this.InitializeComponent();
-            this.Suspending += OnSuspending;
+            this.Suspending += this.OnSuspending;
         }
 
         /// <summary>
@@ -57,11 +60,11 @@ namespace UnoFlyoutStyleIssue
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
 
-                rootFrame.NavigationFailed += OnNavigationFailed;
+                rootFrame.NavigationFailed += this.OnNavigationFailed;
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
-                    //TODO: Load state from previously suspended application
+                    // TODO: Load state from previously suspended application
                 }
 
                 // Place the frame in the current Window
@@ -77,9 +80,62 @@ namespace UnoFlyoutStyleIssue
                     // parameter
                     rootFrame.Navigate(typeof(MainPage), e.Arguments);
                 }
+
                 // Ensure the current window is active
                 Windows.UI.Xaml.Window.Current.Activate();
             }
+        }
+
+        /// <summary>
+        /// Configures global logging
+        /// </summary>
+        /// <param name="factory">The logging factory</param>
+        private static void ConfigureFilters(ILoggerFactory factory)
+        {
+            factory
+                .WithFilter(new FilterLoggerSettings
+                    {
+                        { "Uno", LogLevel.Warning },
+                        { "Windows", LogLevel.Warning },
+
+                        // Debug JS interop
+                        //// { "Uno.Foundation.WebAssemblyRuntime", LogLevel.Debug },
+
+                        // Generic Xaml events
+                        //// { "Windows.UI.Xaml", LogLevel.Debug },
+                        //// { "Windows.UI.Xaml.VisualStateGroup", LogLevel.Debug },
+                        //// { "Windows.UI.Xaml.StateTriggerBase", LogLevel.Debug },
+                        //// { "Windows.UI.Xaml.UIElement", LogLevel.Debug },
+
+                        // Layouter specific messages
+                        //// { "Windows.UI.Xaml.Controls", LogLevel.Debug },
+                        //// { "Windows.UI.Xaml.Controls.Layouter", LogLevel.Debug },
+                        //// { "Windows.UI.Xaml.Controls.Panel", LogLevel.Debug },
+                        //// { "Windows.Storage", LogLevel.Debug },
+
+                        // Binding related messages
+                        //// { "Windows.UI.Xaml.Data", LogLevel.Debug },
+
+                        // DependencyObject memory references tracking
+                        //// { "ReferenceHolder", LogLevel.Debug },
+
+                        //// ListView-related messages
+                        //// { "Windows.UI.Xaml.Controls.ListViewBase", LogLevel.Debug },
+                        //// { "Windows.UI.Xaml.Controls.ListView", LogLevel.Debug },
+                        //// { "Windows.UI.Xaml.Controls.GridView", LogLevel.Debug },
+                        //// { "Windows.UI.Xaml.Controls.VirtualizingPanelLayout", LogLevel.Debug },
+                        //// { "Windows.UI.Xaml.Controls.NativeListViewBase", LogLevel.Debug },
+                        //// { "Windows.UI.Xaml.Controls.ListViewBaseSource", LogLevel.Debug }, //iOS
+                        //// { "Windows.UI.Xaml.Controls.ListViewBaseInternalContainer", LogLevel.Debug }, //iOS
+                        //// { "Windows.UI.Xaml.Controls.NativeListViewBaseAdapter", LogLevel.Debug }, //Android
+                        //// { "Windows.UI.Xaml.Controls.BufferViewCache", LogLevel.Debug }, //Android
+                        //// { "Windows.UI.Xaml.Controls.VirtualizingPanelGenerator", LogLevel.Debug }, //WASM
+                    })
+#if DEBUG
+                .AddConsole(LogLevel.Debug);
+#else
+                .AddConsole(LogLevel.Information);
+#endif
         }
 
         /// <summary>
@@ -87,7 +143,7 @@ namespace UnoFlyoutStyleIssue
         /// </summary>
         /// <param name="sender">The Frame which failed navigation</param>
         /// <param name="e">Details about the navigation failure</param>
-        void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
+        private void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
             throw new Exception($"Failed to load {e.SourcePageType.FullName}: {e.Exception}");
         }
@@ -102,62 +158,9 @@ namespace UnoFlyoutStyleIssue
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            //TODO: Save application state and stop any background activity
+
+            // TODO: Save application state and stop any background activity
             deferral.Complete();
-        }
-
-
-        /// <summary>
-        /// Configures global logging
-        /// </summary>
-        /// <param name="factory"></param>
-        static void ConfigureFilters(ILoggerFactory factory)
-        {
-            factory
-                .WithFilter(new FilterLoggerSettings
-                    {
-                        { "Uno", LogLevel.Warning },
-                        { "Windows", LogLevel.Warning },
-
-						// Debug JS interop
-						// { "Uno.Foundation.WebAssemblyRuntime", LogLevel.Debug },
-
-						// Generic Xaml events
-						// { "Windows.UI.Xaml", LogLevel.Debug },
-						// { "Windows.UI.Xaml.VisualStateGroup", LogLevel.Debug },
-						// { "Windows.UI.Xaml.StateTriggerBase", LogLevel.Debug },
-						// { "Windows.UI.Xaml.UIElement", LogLevel.Debug },
-
-						// Layouter specific messages
-						// { "Windows.UI.Xaml.Controls", LogLevel.Debug },
-						// { "Windows.UI.Xaml.Controls.Layouter", LogLevel.Debug },
-						// { "Windows.UI.Xaml.Controls.Panel", LogLevel.Debug },
-						// { "Windows.Storage", LogLevel.Debug },
-
-						// Binding related messages
-						// { "Windows.UI.Xaml.Data", LogLevel.Debug },
-
-						// DependencyObject memory references tracking
-						// { "ReferenceHolder", LogLevel.Debug },
-
-						// ListView-related messages
-						// { "Windows.UI.Xaml.Controls.ListViewBase", LogLevel.Debug },
-						// { "Windows.UI.Xaml.Controls.ListView", LogLevel.Debug },
-						// { "Windows.UI.Xaml.Controls.GridView", LogLevel.Debug },
-						// { "Windows.UI.Xaml.Controls.VirtualizingPanelLayout", LogLevel.Debug },
-						// { "Windows.UI.Xaml.Controls.NativeListViewBase", LogLevel.Debug },
-						// { "Windows.UI.Xaml.Controls.ListViewBaseSource", LogLevel.Debug }, //iOS
-						// { "Windows.UI.Xaml.Controls.ListViewBaseInternalContainer", LogLevel.Debug }, //iOS
-						// { "Windows.UI.Xaml.Controls.NativeListViewBaseAdapter", LogLevel.Debug }, //Android
-						// { "Windows.UI.Xaml.Controls.BufferViewCache", LogLevel.Debug }, //Android
-						// { "Windows.UI.Xaml.Controls.VirtualizingPanelGenerator", LogLevel.Debug }, //WASM
-					}
-                )
-#if DEBUG
-				.AddConsole(LogLevel.Debug);
-#else
-                .AddConsole(LogLevel.Information);
-#endif
         }
     }
 }

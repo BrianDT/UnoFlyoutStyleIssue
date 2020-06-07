@@ -38,10 +38,17 @@
     <!-- Note that for WebAssembly version 1.1.1 of the console logger required -->
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
-    <PackageReference Include="Uno.UI" Version="3.0.0-dev.76" />
-    <PackageReference Include="Uno.UI.RemoteControl" Version="3.0.0-dev.76" Condition="'$(Configuration)'=='Debug'" />
-    <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.3.0-dev.7" />
-    <PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="1.3.0-dev.7" />
+    <PackageReference Include="Uno.UI" Version="3.0.0-dev.412" />
+    <PackageReference Include="Uno.UI.RemoteControl" Version="3.0.0-dev.412" Condition="'$(Configuration)'=='Debug'" />
+    <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.3.0-dev.35" />
+    <PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="1.3.0-dev.35" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Framework.Helpers\Framework.Helpers.csproj" />
+    <ProjectReference Include="..\..\Framework.Uno\Framework.Uno.csproj" />
+    <ProjectReference Include="..\..\FrameworkInterfaces\FrameworkInterfaces.csproj" />
+    <ProjectReference Include="..\..\ViewModelInterfaces\ViewModelInterfaces.csproj" />
+    <ProjectReference Include="..\..\ViewModels\ViewModels.csproj" />
   </ItemGroup>
   <Import Project="..\UnoFlyoutStyleIssue.Shared\UnoFlyoutStyleIssue.Shared.projitems" Label="Shared" Condition="Exists('..\UnoFlyoutStyleIssue.Shared\UnoFlyoutStyleIssue.Shared.projitems')" />
 </Project>

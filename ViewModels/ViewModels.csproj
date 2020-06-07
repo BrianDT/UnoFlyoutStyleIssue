@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Vssl.Samples.ViewModels</AssemblyName>
+    <RootNamespace>Vssl.Samples.ViewModels</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Framework.Helpers\Framework.Helpers.csproj" />
+    <ProjectReference Include="..\FrameworkInterfaces\FrameworkInterfaces.csproj" />
+    <ProjectReference Include="..\ViewModelInterfaces\ViewModelInterfaces.csproj" />
+  </ItemGroup>
+
+</Project>

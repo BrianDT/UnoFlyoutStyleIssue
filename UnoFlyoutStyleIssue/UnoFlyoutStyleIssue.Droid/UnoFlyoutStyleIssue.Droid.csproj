@@ -61,8 +61,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Uno.UI" Version="3.0.0-dev.76" />
-    <PackageReference Include="Uno.UI.RemoteControl" Version="3.0.0-dev.76" Condition="'$(Configuration)'=='Debug'" />
+    <PackageReference Include="Uno.UI" Version="3.0.0-dev.412" />
+    <PackageReference Include="Uno.UI.RemoteControl" Version="3.0.0-dev.412" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Uno.UniversalImageLoader" Version="1.9.32" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
@@ -88,6 +88,28 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Styles.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Framework.Helpers\Framework.Helpers.csproj">
+      <Project>{515d36ab-f5b4-4e40-a0c4-baa99ac8a781}</Project>
+      <Name>Framework.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework.Uno\Framework.Uno.csproj">
+      <Project>{268b3c44-812a-4601-abcc-bb4a73f3154f}</Project>
+      <Name>Framework.Uno</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\FrameworkInterfaces\FrameworkInterfaces.csproj">
+      <Project>{68632dc4-5f35-4e36-b274-088210619153}</Project>
+      <Name>FrameworkInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ViewModelInterfaces\ViewModelInterfaces.csproj">
+      <Project>{a0613a28-c784-4d50-a9a2-d63cf4d03b53}</Project>
+      <Name>ViewModelInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ViewModels\ViewModels.csproj">
+      <Project>{641c1b7e-68c8-413e-b6f0-b0b2fb02cf3c}</Project>
+      <Name>ViewModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\UnoFlyoutStyleIssue.Shared\UnoFlyoutStyleIssue.Shared.projitems" Label="Shared" Condition="Exists('..\UnoFlyoutStyleIssue.Shared\UnoFlyoutStyleIssue.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

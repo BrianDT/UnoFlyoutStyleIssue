@@ -18,12 +18,30 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-		<TextBlock Text="Hello, world!" Margin="20" FontSize="30" />
+
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Look a command bar!" Margin="20" FontSize="30" />
+            <TextBlock Text="{x:Bind VM.PrimaryClicked, Mode=OneWay}"/>
+            <TextBlock Text="{x:Bind VM.PrimaryCommand, Mode=OneWay}"/>
+        </StackPanel>
 
         <CommandBar Grid.Row="1">
             <CommandBar.PrimaryCommands>
+                <AppBarButton x:Name="Start"
+                        Icon="Setting"
+                        Label="Start"
+                        ToolTipService.ToolTip="Start scheduling"
+                        Click="Start_Click"
+                        Command="{x:Bind VM.StartCommand, Mode=OneWay}" >
+                </AppBarButton>
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="ToggleObjectives"
+                          Icon="Globe"
+                          Label="Objectives"
+                          ToolTipService.ToolTip="Show the objectives"
+                          Command="{x:Bind VM.ShowObjectivesCommand, Mode=OneWay}"
+                          />
                 <AppBarButton x:Name="Menu"
                         Icon="AllApps"
                         Label="Models"
@@ -32,6 +50,7 @@
                     <AppBarButton.Flyout>
                         <MenuFlyout>
                             <MenuFlyoutItem Text="Tutorial"
+                                            Command="{x:Bind VM.SwitchModelCommand}" CommandParameter="T"
                                             Style="{StaticResource menuFlyoutItemStyle}"/> <!--If the style id changed to menuFlyoutItemGlobalStyle the crash will not occur-->
                         </MenuFlyout>
                     </AppBarButton.Flyout>
